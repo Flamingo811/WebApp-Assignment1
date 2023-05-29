@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home</title>
+    <link rel="stylesheet" href="css/style2.css">
+    <!--File Name: WebApp Assignment1
+        Student Name: Ka Wah Lau
+        Student ID: 301255100
+        Date: 25-May-2023-->
+  </head>
+  <body>
+    
+    <%- include('partials/header') %>
+
+    
+    <div class="contact-panel">
+        <h2>Contact Information</h2>
+        <p><strong>Email:</strong> klau130@my.centennialcollege.ca</p>
+        <p><strong>Phone:</strong> 647-617-7428</p>
+      </div>
+      
+      <div class="contact-form">
+        <h2>Contact Form</h2>
+        <form action="/submit-message" method="post">
+          <div class="field">
+            <label class="label">First Name</label>
+            <div class="control">
+              <input class="input" type="text" name="firstName" required>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Last Name</label>
+            <div class="control">
+              <input class="input" type="text" name="lastName" required>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Contact Number</label>
+            <div class="control">
+              <input class="input" type="tel" name="contactNumber" required>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Email Address</label>
+            <div class="control">
+              <input class="input" type="email" name="email" required>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Message</label>
+            <div class="control">
+              <textarea class="textarea" name="message" required></textarea>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <button class="button is-primary" type="submit">Send Message</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      
+  
+  <%- include('partials/footer') %>
+  </body>
+  </html>
+  

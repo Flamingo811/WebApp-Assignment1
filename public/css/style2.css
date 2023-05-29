@@ -1,0 +1,15 @@
+/*
+        File Name: WebApp Assignment1
+        Student Name: Ka Wah Lau
+        Student ID: 301255100
+        Date: 25-May-2023
+*/
+body{float:inline-start;
+    border: 1px solid rgb(127, 223, 255);
+    margin: 45px 30px 95px 120px;
+    background-color:rgb(127, 223, 255)
+}
+#logo{width:200px;
+    height:200px;
+
+}
