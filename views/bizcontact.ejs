@@ -1,10 +1,14 @@
 <h1>Business Contacts List</h1>
+<!-- bizcontact.ejs -->
+<% if (showAddButton) { %>
+  <a href="/bizcontact/add" class="btn btn-primary">Add</a>
+<% } %>
 <table>
   <tr>
-    <th>Contact Name</th>
-    <th>Contact Number</th>
-    <th>Email Address</th>
-    <th>Actions</th>
+    <th>Contact Name</th><&nbsp>
+    <th>Contact Number</th><&nbsp>
+    <th>Email Address</th><&nbsp>
+    <th>Actions</th><&nbsp>
   </tr>
   <% contacts.forEach(contact => { %>
     <tr>
