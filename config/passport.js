@@ -5,7 +5,7 @@
         Date: 18-June-2023
 */
 
-    const User = require('../models/users');
+    const User = require('../models/User');
     const LocalStrategy = require("passport-local").Strategy;
     const bcrypt = require('bcryptjs');
     
