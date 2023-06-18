@@ -128,19 +128,13 @@ router.use((req, res, next) => {
   }
 });
 
-// Business Contacts List View
 router.get('/bizcontact', async (req, res) => {
   try {
     // Retrieve contacts from the database
     const contacts = await Contact.find();
-    
-    if (contacts.length === 0) {
-      // If no contacts found, redirect to the contact add page
-      res.redirect('bizcontact_add');
-    } else {
-      // Render the bizcontact view and pass the contacts data
-      res.render('bizcontact', { contacts });
-    }
+
+    // Render the bizcontact view and pass the contacts data
+    res.render('bizcontact', { contacts, showAddButton: true });
   } catch (error) {
     console.error('Error retrieving contacts:', error);
     res.status(500).send('Error retrieving contacts');
@@ -148,11 +142,11 @@ router.get('/bizcontact', async (req, res) => {
 });
 
 
-router.get('/bizcontact/bizcontact_add', (req, res) => {
+router.get('/bizcontact/add', (req, res) => {
   res.render('bizcontact_add');
 });
 
-router.post('/bizcontact/bizcontat_add', async (req, res) => {
+router.post('/bizcontact/add', async (req, res) => {
   const { name, number, email } = req.body;
 
   try {
