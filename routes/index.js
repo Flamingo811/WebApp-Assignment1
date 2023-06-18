@@ -134,7 +134,7 @@ router.get('/bizcontact', async (req, res) => {
     
     if (contacts.length === 0) {
       // If no contacts found, redirect to the contact add page
-      res.redirect('/bizcontact_add');
+      res.redirect('/bizcontact/bizcontact_add');
     } else {
       // Render the bizcontact view and pass the contacts data
       res.render('bizcontact', { contacts });
