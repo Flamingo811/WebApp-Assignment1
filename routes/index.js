@@ -9,7 +9,6 @@ const mongoose = require('mongoose');
 // Create the Express app
 const app = express();
 
-// Configure other middleware and routes...
 
 // Connect to MongoDB
 mongoose.connect('mongodb+srv://stephencencol:Kw811822@cluster0.x5e3n7s.mongodb.net/webapp', {
@@ -91,6 +90,11 @@ router.post('/register', (req, res) => {
 router.get('/login', (req, res) => {
   res.render('login');
 });
+
+router.post('/login', forwardAuthenticated, passport.authenticate('local', {
+  successRedirect: '/bizcontact',
+  failureRedirect: '/login',
+}));
 
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
