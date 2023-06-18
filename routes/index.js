@@ -3,6 +3,8 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const session = require('express-session');
 const User = require('../models/User');
+const Contact = require('../models/bizcontact');
+
 require('dotenv').config();
 const mongoose = require('mongoose');
 
@@ -146,27 +148,25 @@ router.get('/bizcontact', async (req, res) => {
 });
 
 
-// Display Add Contact Form
-router.get('/bizcontact/bizcontact_add', (req, res) => {
+router.get('/bizcontact/add', (req, res) => {
   res.render('bizcontact_add');
 });
 
-//Add new contact
-router.post('/bizcontact/bizcontact_add', async (req, res) => {
+router.post('/bizcontact/add', async (req, res) => {
+  const { name, number, email } = req.body;
+
   try {
-    const { name, number, email } = req.body;
+    // Create a new contact using the Contact model
+    const contact = new Contact({ name, number, email });
 
-    // Create a new contact document
-    const newContact = new Contact({ name, number, email });
+    // Save the contact to the database
+    await contact.save();
 
-    // Save the new contact to the database
-    await newContact.save();
-
-    // Redirect to the contacts view
+    // Redirect to the bizcontact page after successful contact creation
     res.redirect('/bizcontact');
   } catch (error) {
-    // Handle the error if saving the contact fails
-    res.status(500).send('Error adding contact');
+    console.error('Error creating contact:', error);
+    res.status(500).send('Error creating contact');
   }
 });
 
