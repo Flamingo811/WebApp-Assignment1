@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const session = require('express-session');
 const User = require('../models/User');
+require('dotenv').config();
 
 
 router.use(express.urlencoded({ extended: true }));
