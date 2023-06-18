@@ -177,7 +177,7 @@ router.post('/bizcontact/:id/update', async (req, res) => {
   try {
     // Find the contact by its ID
     const contact = await Contact.findById(contactId);
-
+    res.render('bizcontact_update', { contact });
     // Update the contact's details
     contact.name = name;
     contact.number = number;
