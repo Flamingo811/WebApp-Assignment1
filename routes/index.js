@@ -4,7 +4,15 @@ const bcrypt = require('bcryptjs');
 const session = require('express-session');
 const User = require('../models/User');
 const registerRoute = require('./routes/register');
+const passport = require('passport');
+const { forwardAuthenticated, ensureAuthenticated } = require('../config/auth');
 
+// Router callback for login page
+router.get('/login', forwardAuthenticated, controller.login);
+router.post('/login', forwardAuthenticated, passport.authenticate('local', {
+    successRedirect: '/bizcontact',
+    failureRedirect: '/login',
+}));
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/your-database-name', {
   useNewUrlParser: true,
