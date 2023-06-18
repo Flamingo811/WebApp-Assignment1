@@ -70,6 +70,22 @@ router.post('/register', (req, res) => {
   const { username, password, email } = req.body;
   const newUser = new User({ username, password, email });
   
+  bcrypt.genSalt(10, (err, salt) => {
+    if (err) {
+      // Handle error
+      return res.status(500).send('Error registering user');
+    }
+
+    // Hash the password with the generated salt
+    bcrypt.hash(password, salt, (err, hashedPassword) => {
+      if (err) {
+        // Handle error
+        return res.status(500).send('Error registering user');
+      }
+
+      const newUser = new User({ username, password: hashedPassword, email });
+
+
  // Save the user to the database
  newUser.save()
  .then(() => {
