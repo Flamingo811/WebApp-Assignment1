@@ -68,7 +68,6 @@ router.get('/register', (req, res) => {
 
 router.post('/register', (req, res) => {
   const { username, password, email } = req.body;
- 
   
   bcrypt.genSalt(10, (err, salt) => {
     if (err) {
@@ -85,23 +84,20 @@ router.post('/register', (req, res) => {
 
       const newUser = new User({ username, password: hashedPassword, email });
 
-
- // Save the user to the database
- newUser.save()
- .then(() => {
-   // User created successfully
-   // Redirect the user to the bizcontact page
-   res.redirect('/bizcontact');
- })
- .catch((error) => {
-   // Handle the error if user creation fails
-   res.status(500).send('Error registering user');
- });
+      // Save the user to the database
+      newUser.save()
+        .then(() => {
+          // User created successfully
+          // Redirect the user to the bizcontact page
+          res.redirect('/bizcontact');
+        })
+        .catch((error) => {
+          // Handle the error if user creation fails
+          res.status(500).send('Error registering user');
+        });
+    });
+  });
 });
-
-
-
-
 
 router.get('/login', (req, res) => {
   res.render('login');
