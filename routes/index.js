@@ -128,9 +128,17 @@ router.use((req, res, next) => {
 
 // Business Contacts List View
 router.get('/bizcontact', (req, res) => {
-  // Retrieve contacts from the database and render the contacts view
-  res.render('bizcontact');
+  // Retrieve contacts from the database or any other data source
+  const contacts = [
+    { name: 'John Doe', number: '1234567890' },
+    { name: 'Jane Smith', number: '9876543210' },
+    // ... add more contacts as needed
+  ];
+
+  // Render the bizcontact view and pass the contacts data
+  res.render('bizcontact', { contacts });
 });
+
 
 // Update View
 router.get('/bizcontact/:id/update', (req, res) => {
