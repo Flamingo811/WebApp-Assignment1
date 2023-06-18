@@ -91,10 +91,7 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.post('/login', forwardAuthenticated, passport.authenticate('local', {
-  successRedirect: '/bizcontact',
-  failureRedirect: '/login',
-}));
+
 
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
