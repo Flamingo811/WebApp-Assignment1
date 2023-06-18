@@ -1,14 +1,13 @@
 <h1>Business Contacts List</h1>
-<!-- bizcontact.ejs -->
 <% if (showAddButton) { %>
   <a href="/bizcontact/add" class="btn btn-primary">Add</a>
 <% } %>
 <table>
   <tr>
-    <th>Contact Name</th><&nbsp>
-    <th>Contact Number</th><&nbsp>
-    <th>Email Address</th><&nbsp>
-    <th>Actions</th><&nbsp>
+    <th>Contact Name</th>
+    <th>Contact Number</th>
+    <th>Email Address</th>
+    <th>Actions</th>
   </tr>
   <% contacts.forEach(contact => { %>
     <tr>
@@ -16,9 +15,10 @@
       <td><%= contact.number %></td>
       <td><%= contact.email %></td>
       <td>
-        <a href="/bizcontact/<%= contact._id %>/update">Update</a>
-        <a href="/bizcontact/<%= contact._id %>/delete">Delete</a>
-        <a href="/bizcontact/add">Add</a> <!-- Modified: Added the "Add" button -->
+        <a href="/bizcontact/<%= contact._id %>/update" class="btn btn-primary">Update</a>
+        <form action="/bizcontact/<%= contact._id %>/delete" method="POST" onsubmit="return confirm('Are you sure you want to delete this contact?')">
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
       </td>
     </tr>
   <% }); %>

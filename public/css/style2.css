@@ -23,3 +23,7 @@ nav li {
     padding: 0;
     overflow: hidden;
   }
+  .table {
+    border-collapse: separate;
+    border-spacing: 10px;
+  }

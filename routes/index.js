@@ -164,21 +164,49 @@ router.post('/bizcontact/add', async (req, res) => {
   }
 });
 
-
-
-// Update View
 router.get('/bizcontact/:id/update', (req, res) => {
   const contactId = req.params.id;
   // Retrieve the contact from the database and render the update view
   res.render('bizcontact_update', { contactId });
 });
 
-router.post('/bizcontact/:id/update', (req, res) => {
+router.post('/bizcontact/:id/update', async (req, res) => {
   const contactId = req.params.id;
-  // Update the contact details in the database and redirect to the contacts view
-  // Implement the logic to update the contact based on the provided contactId
-  res.redirect('/bizcontact');
+  const { name, number, email } = req.body;
+
+  try {
+    // Find the contact by its ID
+    const contact = await Contact.findById(contactId);
+
+    // Update the contact's details
+    contact.name = name;
+    contact.number = number;
+    contact.email = email;
+
+    // Save the updated contact to the database
+    await contact.save();
+
+    // Redirect to the bizcontact page after successful contact update
+    res.redirect('/bizcontact');
+  } catch (error) {
+    console.error('Error updating contact:', error);
+    res.status(500).send('Error updating contact');
+  }
 });
 
+router.post('/bizcontact/:id/delete', async (req, res) => {
+  const contactId = req.params.id;
+
+  try {
+    // Find the contact by its ID and delete it
+    await Contact.findByIdAndDelete(contactId);
+
+    // Redirect to the bizcontact page after successful contact deletion
+    res.redirect('/bizcontact');
+  } catch (error) {
+    console.error('Error deleting contact:', error);
+    res.status(500).send('Error deleting contact');
+  }
+});
 
 module.exports = router;
