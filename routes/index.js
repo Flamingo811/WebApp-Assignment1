@@ -4,6 +4,11 @@ const bcrypt = require('bcryptjs');
 const session = require('express-session');
 const User = require('../models/User');
 
+mongoose.connect('mongodb+srv://stephencencol:Kw811822@cluster0.x5e3n7s.mongodb.net/', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
 
 router.use(express.urlencoded({ extended: true }));
 router.use(session({
