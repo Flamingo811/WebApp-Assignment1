@@ -4,6 +4,28 @@ const bcrypt = require('bcryptjs');
 const session = require('express-session');
 const User = require('../models/User');
 require('dotenv').config();
+const mongoose = require('mongoose');
+
+// Create the Express app
+const app = express();
+
+// Configure other middleware and routes...
+
+// Connect to MongoDB
+mongoose.connect('mongodb+srv://stephencencol:Kw811822@cluster0.x5e3n7s.mongodb.net/webapp', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+  .then(() => {
+    console.log('Connected to MongoDB');
+    // Start the server
+    app.listen(3000, () => {
+      console.log('Server started on port 3000');
+    });
+  })
+  .catch((error) => {
+    console.error('Error connecting to MongoDB:', error);
+  });
 
 
 router.use(express.urlencoded({ extended: true }));
@@ -49,16 +71,17 @@ router.post('/register', (req, res) => {
   const { username, password, email } = req.body;
   const newUser = new User({ username, password, email });
   
-  // Save the user to the database
-  newUser.save()
-    .then(() => {
-      // User created successfully
-      res.send('User registered successfully');
-    })
-    .catch((error) => {
-      // Handle the error if user creation fails
-      res.status(500).send('Error registering user');
-    });
+ // Save the user to the database
+ newUser.save()
+ .then(() => {
+   // User created successfully
+   // Redirect the user to the bizcontact page
+   res.redirect('/bizcontact');
+ })
+ .catch((error) => {
+   // Handle the error if user creation fails
+   res.status(500).send('Error registering user');
+ });
 });
 
 
