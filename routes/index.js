@@ -131,14 +131,20 @@ router.get('/bizcontact', async (req, res) => {
   try {
     // Retrieve contacts from the database
     const contacts = await Contact.find();
-
-    // Render the bizcontact view and pass the contacts data
-    res.render('bizcontact', { contacts });
+    
+    if (contacts.length === 0) {
+      // If no contacts found, redirect to the contact add page
+      res.redirect('/bizcontact/bizcontact_add');
+    } else {
+      // Render the bizcontact view and pass the contacts data
+      res.render('bizcontact', { contacts });
+    }
   } catch (error) {
-    // Handle the error if retrieving contacts fails
+    console.error('Error retrieving contacts:', error);
     res.status(500).send('Error retrieving contacts');
   }
 });
+
 
 // Display Add Contact Form
 router.get('/bizcontact/bizcontact_add', (req, res) => {
