@@ -3,7 +3,24 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const session = require('express-session');
 const User = require('../models/User');
+const registerRoute = require('./routes/register');
 
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost:27017/your-database-name', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+// Middleware
+app.use(express.urlencoded({ extended: true }));
+
+// Routes
+app.use('/', registerRoute);
+
+// Start the server
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
 
 
 router.use(express.urlencoded({ extended: true }));
@@ -38,6 +55,11 @@ router.get('/services', function(req, res, next) {
 /* GET contact page. */
 router.get('/contactMe', function(req, res, next) {
   res.render('contactMe', { title: 'Express' });
+});
+
+// GET register page
+router.get('/register', (req, res) => {
+  res.render('register');
 });
 
 router.get('/login', (req, res) => {
