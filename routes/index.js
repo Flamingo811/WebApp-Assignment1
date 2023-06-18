@@ -148,11 +148,11 @@ router.get('/bizcontact', async (req, res) => {
 });
 
 
-router.get('/bizcontact/add', (req, res) => {
+router.get('/bizcontact/bizcontact_add', (req, res) => {
   res.render('bizcontact_add');
 });
 
-router.post('/bizcontact/add', async (req, res) => {
+router.post('/bizcontact/bizcontat_add', async (req, res) => {
   const { name, number, email } = req.body;
 
   try {
