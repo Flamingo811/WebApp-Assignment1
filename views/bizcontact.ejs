@@ -1,0 +1,20 @@
+<h1>Business Contacts List</h1>
+<table>
+  <tr>
+    <th>Contact Name</th>
+    <th>Contact Number</th>
+    <th>Email Address</th>
+    <th>Actions</th>
+  </tr>
+  <% contacts.forEach(contact => { %>
+    <tr>
+      <td><%= contact.name %></td>
+      <td><%= contact.number %></td>
+      <td><%= contact.email %></td>
+      <td>
+        <a href="/contacts/<%= contact._id %>/update">Update</a>
+        <a href="/contacts/<%= contact._id %>/delete">Delete</a>
+      </td>
+    </tr>
+  <% }); %>
+</table>

@@ -10,6 +10,16 @@ body{float:inline-start;
     background-color:rgb(127, 223, 255)
 }
 #logo{width:200px;
-    height:200px;
+    height:200px;}
 
-}
+
+nav li {
+    float: left;padding: 14px 16px;
+  }
+
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }

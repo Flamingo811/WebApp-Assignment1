@@ -1,0 +1,30 @@
+<h1>Update Contact</h1>
+<form action="/contacts/<%= contact._id %>/update" method="POST">
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" value="<%= contact.name %>" required>
+  </div>
+  <div>
+    <label for="number">Contact Number:</label>
+    <input type="text" id="number" name="number" value="<%= contact.number %>" required>
+  </div>
+  <div>
+    <label for="email">Email Address:</label>
+    <input type="email" id="email" name="email" value="<%= contact.email %>" required>
+  </div>
+  <button type="submit">Update</button>
+  <button type="button" onclick="deleteContact('<%= contact._id %>')">Delete</button>
+  <button type="button" onclick="cancelUpdate()">Cancel</button>
+</form>
+
+<script>
+  function deleteContact(contactId) {
+    if (confirm('Are you sure you want to delete this contact?')) {
+      window.location.href = '/contacts/' + contactId + '/delete';
+    }
+  }
+
+  function cancelUpdate() {
+    window.location.href = '/contacts';
+  }
+</script>

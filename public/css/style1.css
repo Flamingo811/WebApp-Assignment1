@@ -5,7 +5,7 @@
         Date: 25-May-2023
 */
 body{
-    border: 1px solid black;
+    border: 1px solid aquamarine;
     margin: 25px 50px 75px 100px;
     background-color:aquamarine
 }
@@ -13,3 +13,14 @@ body{
     height:200px;
 
 }
+
+  nav li {
+    float: left;padding: 14px 16px;
+  }
+
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
