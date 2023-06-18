@@ -127,17 +127,43 @@ router.use((req, res, next) => {
 });
 
 // Business Contacts List View
-router.get('/bizcontact', (req, res) => {
-  // Retrieve contacts from the database or any other data source
-  const contacts = [
-    { name: 'John Doe', number: '1234567890' },
-    { name: 'Jane Smith', number: '9876543210' },
-    // ... add more contacts as needed
-  ];
+router.get('/bizcontact', async (req, res) => {
+  try {
+    // Retrieve contacts from the database
+    const contacts = await Contact.find();
 
-  // Render the bizcontact view and pass the contacts data
-  res.render('bizcontact', { contacts });
+    // Render the bizcontact view and pass the contacts data
+    res.render('bizcontact', { contacts });
+  } catch (error) {
+    // Handle the error if retrieving contacts fails
+    res.status(500).send('Error retrieving contacts');
+  }
 });
+
+// Display Add Contact Form
+router.get('/bizcontact/bizcontact_add', (req, res) => {
+  res.render('bizcontact_add');
+});
+
+//Add new contact
+router.post('/bizcontact/bizcontact_add', async (req, res) => {
+  try {
+    const { name, number, email } = req.body;
+
+    // Create a new contact document
+    const newContact = new Contact({ name, number, email });
+
+    // Save the new contact to the database
+    await newContact.save();
+
+    // Redirect to the contacts view
+    res.redirect('/bizcontact');
+  } catch (error) {
+    // Handle the error if saving the contact fails
+    res.status(500).send('Error adding contact');
+  }
+});
+
 
 
 // Update View
