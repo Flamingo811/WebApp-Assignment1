@@ -144,13 +144,15 @@ router.get('/bizcontact', (req, res) => {
 router.get('/bizcontact/:id/update', (req, res) => {
   const contactId = req.params.id;
   // Retrieve the contact from the database and render the update view
-  res.render('update', { contactId });
+  res.render('bizcontact_update', { contactId });
 });
 
 router.post('/bizcontact/:id/update', (req, res) => {
   const contactId = req.params.id;
   // Update the contact details in the database and redirect to the contacts view
+  // Implement the logic to update the contact based on the provided contactId
   res.redirect('/bizcontact');
 });
+
 
 module.exports = router;
