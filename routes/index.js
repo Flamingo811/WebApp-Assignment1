@@ -40,6 +40,31 @@ router.get('/contactMe', function(req, res, next) {
   res.render('contactMe', { title: 'Express' });
 });
 
+router.get('/register', (req, res) => {
+  res.render('register');
+});
+
+
+router.post('/register', (req, res) => {
+  const { username, password, email } = req.body;
+  const newUser = new User({ username, password, email });
+  
+  // Save the user to the database
+  newUser.save()
+    .then(() => {
+      // User created successfully
+      res.send('User registered successfully');
+    })
+    .catch((error) => {
+      // Handle the error if user creation fails
+      res.status(500).send('Error registering user');
+    });
+});
+
+
+
+
+
 router.get('/login', (req, res) => {
   res.render('login');
 });
