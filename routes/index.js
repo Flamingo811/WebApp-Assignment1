@@ -98,7 +98,7 @@ router.post('/login', async (req, res) => {
 
   if (user && bcrypt.compareSync(password, user.password)) {
     req.session.authenticated = true;
-    res.redirect('/contacts');
+    res.redirect('/bizcontact');
   } else {
     res.redirect('/login');
   }
