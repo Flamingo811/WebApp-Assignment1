@@ -1,6 +1,6 @@
 <h1>Business Contacts List</h1>
 <% if (showAddButton) { %>
-  <a href="/bizcontact/add" class="btn btn-primary">Add</a>
+  <a href="/bizcontact/add" class="btn btn-primary">Add Contact</a>
 <% } %>
 <table>
   <tr>
@@ -15,12 +15,11 @@
       <td><%= contact.number %></td>
       <td><%= contact.email %></td>
       <td>
-        <a href="/bizcontact/<%= contact._id %>/update" class="btn btn-primary">Update</a>
+        <form action="/bizcontact/<%= contact._id %>/update" method="POST">
+          <button type="submit" class="btn btn-primary">Update</button>
+        </form>
         <form action="/bizcontact/<%= contact._id %>/delete" method="POST" onsubmit="return confirm('Are you sure you want to delete this contact?')">
           <button type="submit" class="btn btn-danger">Delete</button>
-        </form>
-        <form action="/bizcontact/<%= contact._id %>/update" method="GET">
-          <button type="submit" class="btn btn-primary">Update</button>
         </form>
       </td>
     </tr>
