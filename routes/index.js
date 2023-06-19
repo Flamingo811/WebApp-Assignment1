@@ -146,7 +146,7 @@ router.get('/bizcontact/add', (req, res) => {
   res.render('bizcontact_add');
 });
 
-router.get('/bizcontact/add', async (req, res) => {
+router.post('/bizcontact/add', async (req, res) => {
   const { name, number, email } = req.body;
 
   try {
@@ -164,12 +164,31 @@ router.get('/bizcontact/add', async (req, res) => {
   }
 });
 
-router.post('/bizcontact/:id/update', (req, res) => {
+router.get('/bizcontact/:id/update', (req, res) => {
   const contactId = req.params.id;
   // Retrieve the contact from the database and render the update view
   res.render('bizcontact_update', { contactId });
 });
 
+router.post('/bizcontact/:id/update', async (req, res) => {
+  const contactId = req.params.id;
+
+  try {
+    // Find the contact by its ID
+    const contact = await Contact.findById(contactId);
+
+    if (!contact) {
+      // Handle the case when the contact is not found
+      return res.status(404).send('Contact not found');
+    }
+
+    // Render the bizcontact_update view and pass the contact data
+    res.render('bizcontact_update', { contact });
+  } catch (error) {
+    console.error('Error retrieving contact:', error);
+    res.status(500).send('Error retrieving contact');
+  }
+});
 
 
 router.post('/bizcontact/:id/delete', async (req, res) => {
