@@ -170,7 +170,7 @@ router.get('/bizcontact/:id/update', (req, res) => {
   res.render('bizcontact_update', { contactId });
 });
 
-router.get('/bizcontact/:id/update', async (req, res) => {
+router.post('/bizcontact/:id/update', async (req, res) => {
   const contactId = req.params.id;
 
   try {
