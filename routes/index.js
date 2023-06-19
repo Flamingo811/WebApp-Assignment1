@@ -180,6 +180,7 @@ router.post('/bizcontact/:id/update', async (req, res) => {
 
     // Render the bizcontact_update view and pass the contact data
     res.render('bizcontact_update', { contact });
+    res.redirect('/bizcontact');
   } catch (error) {
     console.error('Error retrieving contact:', error);
     res.status(500).send('Error retrieving contact');
