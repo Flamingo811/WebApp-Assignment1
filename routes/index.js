@@ -164,12 +164,6 @@ router.post('/bizcontact/add', async (req, res) => {
   }
 });
 
-router.get('/bizcontact/:id/update', (req, res) => {
-  const contactId = req.params.id;
-  // Retrieve the contact from the database and render the update view
-  res.render('bizcontact_update', { contactId });
-});
-
 router.post('/bizcontact/:id/update', async (req, res) => {
   const contactId = req.params.id;
 
