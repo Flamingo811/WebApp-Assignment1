@@ -1,5 +1,5 @@
 <h1>Update Contact</h1>
-<form action="/bizcontact/update" method="POST">
+<form action="/bizcontact/<%= contact._id %>/update" method="GET">
   <div>
     <label for="name">Name:</label>
     <input type="text" id="name" name="name" value="<%= contact.name %>" required>

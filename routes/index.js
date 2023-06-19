@@ -146,7 +146,7 @@ router.get('/bizcontact/add', (req, res) => {
   res.render('bizcontact_add');
 });
 
-router.post('/bizcontact/add', async (req, res) => {
+router.get('/bizcontact/add', async (req, res) => {
   const { name, number, email } = req.body;
 
   try {
