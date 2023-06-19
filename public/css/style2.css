@@ -23,9 +23,34 @@ nav li {
     padding: 0;
     overflow: hidden;
   }
-  .table {
-    border-collapse: separate;
-    border-spacing: 20px;
-    display: grid;
-    gap: 10px;
-  }
+  /* For a form */
+.form {
+  padding: 20px;
+}
+
+.form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.form input[type="text"],
+.form input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.form button[type="submit"] {
+  padding: 10px 20px;
+}
+
+/* For a table */
+.table {
+  border-spacing: 10px;
+}
+
+.table th,
+.table td {
+  padding: 10px;
+}
+
