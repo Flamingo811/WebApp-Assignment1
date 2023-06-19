@@ -172,15 +172,11 @@ router.get('/bizcontact/:id/update', (req, res) => {
 
 router.post('/bizcontact/:id/update', async (req, res) => {
   const contactId = req.params.id;
+  const { name, number, email } = req.body;
 
   try {
     // Find the contact by its ID
-    const contact = await Contact.findById(contactId);
-
-    if (!contact) {
-      // Handle the case when the contact is not found
-      return res.status(404).send('Contact not found');
-    }
+     const contact = await Contact.findByIdAndUpdate(contactId, { name, number, email }, { new: true });
 
     // Render the bizcontact_update view and pass the contact data
     res.render('bizcontact_update', { contact });
