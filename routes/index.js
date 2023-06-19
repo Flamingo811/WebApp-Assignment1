@@ -175,17 +175,17 @@ router.post('/bizcontact/:id/update', async (req, res) => {
   const { name, number, email } = req.body;
 
   try {
-    // Find the contact by its ID and update its details
-    await Contact.findByIdAndUpdate(contactId, { name, number, email });
+    // Find the contact by its ID
+     const contact = await Contact.findByIdAndUpdate(contactId, { name, number, email }, { new: true });
 
-    // Redirect to the bizcontact page after successful contact update
-    res.redirect('/bizcontact');
+    // Render the bizcontact_update view and pass the contact data
+    res.render('bizcontact_update', { contact });
+    
   } catch (error) {
-    console.error('Error updating contact:', error);
-    res.status(500).send('Error updating contact');
+    console.error('Error retrieving contact:', error);
+    res.status(500).send('Error retrieving contact');
   }
 });
-
 
 
 router.post('/bizcontact/:id/delete', async (req, res) => {
