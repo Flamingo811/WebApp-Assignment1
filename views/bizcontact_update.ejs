@@ -1,5 +1,5 @@
 <h1>Update Contact</h1>
-<form action="/bizcontact/<%= contact._id %>/update" method="POST">
+<form action="/bizcontact/update" method="POST">
   <div>
     <label for="name">Name:</label>
     <input type="text" id="name" name="name" value="<%= contact.name %>" required>
@@ -7,6 +7,10 @@
   <div>
     <label for="number">Number:</label>
     <input type="text" id="number" name="number" value="<%= contact.number %>" required>
+  </div>
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" value="<%= contact.email %>" required>
   </div>
   <button type="submit">Update</button>
   <a href="/bizcontact" class="btn btn-secondary">Cancel</a>
